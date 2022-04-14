@@ -1,0 +1,17 @@
+---
+title: Index page
+updated: 2022-01-31
+---
+
+<h1>{{ title }}</h1>
+
+<hr/>
+
+{% assign latestchanges = collections.all | sort: 'updated' | reverse %}
+<ul>
+{%- for page in latestchanges limit: 5 %}
+  <li>
+    {{ page.data.updated }} <b>{{ page.data.title }}</b> - {{ page.data.git_commit_msg }}
+  </li>
+{%- endfor %}
+</ul>
